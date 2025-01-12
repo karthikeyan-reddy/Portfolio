@@ -7,7 +7,7 @@ import Todo from './Todo';
 import PortFolio from './PortFolio';
 import logo from './assets/Photos/logo.png';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
