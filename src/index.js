@@ -20,10 +20,10 @@ root.render(
         <Link to="/Game">Tic-Tac-Toe</Link>
       </div>
     </div>
-    <Router basename="/">
+    <Router basename="/Portfolio">
       <Routes>
         <Route path="/Todo" element={<Todo />} />
-        <Route path="/" element={<PortFolio />} />
+        <Route path="/Portfolio" element={<PortFolio />} />
         <Route path="/Game" element={<App />} />
       </Routes>
     </Router>
