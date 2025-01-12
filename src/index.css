@@ -1,13 +1,144 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Baloo 2", cursive;
+  font-size: 16px;
+  color: #ffffff;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(0, 0%, 0%);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header{
+  height: 100px;
+  width: 98%;
+  margin: 1% 0%;
+  border-radius: 5%;
+}
+.header .header-text{
+  color: aliceblue;
+  float: left;
+  padding: 5px;
+}
+.header .header-appName{
+  color: aqua;
+  text-align: center;
+  font-weight: bold;
+}
+.addBtn{
+  border-radius: 5%;
+  border: 2px solid aliceblue;
+  color: aliceblue;
+  background-color: hsl(235, 14%, 16%);
+  border: 2px solid rgba(45,255,196,0.9);
+  margin-left: 42%;
+  padding: 10px 25px;
+  font-size: 20px;
+}
+.addBtn:hover{
+  background-color: rgba(45,255,196,0.9);
+  color: hsla(0, 0%, 4%, 0.777);
+  -webkit-box-shadow:0px 0px 37px 0px rgba(45,255,196,0.9);
+  -moz-box-shadow: 0px 0px 37px 0px rgba(45,255,196,0.9);
+  box-shadow: 0px 0px 37px 0px rgba(45,255,196,0.9);
+}
+#todo{
+  background-color: hsl(235, 14%, 16%);
+  color: rgba(45,255,196,0.9);
+  font-size: 15px;
+  width: 500px;
+  height: 100px;
+  margin: 10px;
+}
+#todo:focus, #todo:hover{
+  -webkit-box-shadow:0px 0px 37px 0px rgba(45,255,196,0.9);
+  -moz-box-shadow: 0px 0px 37px 0px rgba(45,255,196,0.9);
+  box-shadow: 0px 0px 37px 0px rgba(45,255,196,0.9);
+}
+table{
+  vertical-align: top;
+  width: 100%;
+}
+#listContainer{
+  box-shadow: 0px 0px 37px 0px rgba(45,255,196,0.9);
+  border: 1px solid rgb(241, 100, 124);
+  width: 500px;
+  height: 500px;
+  overflow-y: scroll;
+}
+.unOrderList{
+  color: aliceblue;
+  list-style: none;
+}
+.unOrderList li{
+  padding: 5px;
+}
+.todoListItem{
+  width: 80%;
+  border: 1px solid rgb(22, 179, 240);
+  box-shadow: 0px 0px 37px 0px rgba(45, 244, 255, 0.9);
+  text-align: left;
+  font-size: 20px;
+}
+.itemLabel{
+  padding: 0px 20px;
+  overflow: hidden;
+}
+
+#listContainer::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  border: 1px solid hsla(0, 80%, 66%, 0.777);
+}
+
+/* Style the scrollbar handle (the draggable part) */
+#listContainer::-webkit-scrollbar-thumb {
+  background-color: #73cdfb; /* Default color of the thumb */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Hover effect for the scrollbar handle */
+#listContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #f28080; /* Color of the thumb on hover */
+  box-shadow: 0px 0px 37px 0px hsla(0, 80%, 66%, 0.777);
+}
+
+/* Style the scrollbar track (background) */
+#listContainer::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 4%, 0.777);; /* Light color for the track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+/* Global transition effect for all elements */
+* {
+  transition: all 0.3s ease-in-out; /* Adds smooth transitions to all elements */
+}
+
+/* Apply transition effect on hover */
+
+a:hover,
+button:hover{
+  transform: scale(1.05); /* Example of flow-in effect */
+  opacity: 0.8; /* Make element slightly transparent on hover */
+}
+
+/* Optional: Apply click (active) effect */
+a:active,
+button:active {
+  transform: scale(0.95); /* Slightly shrink the element when clicked */
+  opacity: 0.7; /* Reduce opacity during active state */
+}
+
+/* Apply flow-in effect for images */
+img:hover {
+  transform: scale(1.05); /* Slight zoom-in effect on hover */
+  opacity: 0.9;
+}
+.navbarRoutes a{
+  padding: 0px 5px;
+  color:aliceblue;
+  text-decoration:none
 }
