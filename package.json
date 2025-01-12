@@ -24,7 +24,9 @@
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",
-    "serve": "npm run build && serve -s build"
+    "serve": "npm run build && serve -s build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +48,9 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.32",
+    "gh-pages": "^6.3.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "homepage": "https://karthikeyan-reddy.github.io/react-app/"
 }
