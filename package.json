@@ -1,4 +1,5 @@
 {
+  "homepage": "https://karthikeyan-reddy.github.io/Portfolio/",
   "name": "learningreact",
   "version": "0.1.0",
   "private": true,
@@ -51,6 +52,5 @@
     "gh-pages": "^6.3.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4"
-  },
-  "homepage": "https://karthikeyan-reddy.github.io/react-app/"
+  }
 }
