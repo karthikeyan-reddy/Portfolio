@@ -1,7 +1,7 @@
 {
   "homepage": "https://karthikeyan-reddy.github.io/Portfolio/",
-  "name": "learningreact",
-  "version": "0.1.0",
+  "name": "Portfolio",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",

@@ -8,24 +8,27 @@ import PortFolio from './PortFolio';
 import logo from './assets/Photos/logo.png';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { ThemeProvider } from './context/ThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-    <div style={{ borderRadius: '10px', height: '100px', width: '98%', margin: '0% 1%' }} className="navbar">
-      <img src={logo} alt="Mkr Logo" style={{ borderRadius: '10%', float: 'left', width: '5%' }} />
-      <div className="navbarRoutes" style={{ padding: '10px' }}>
-        <Link to="/">Home</Link>
-        <Link to="/Todo">TODO</Link>
-        <Link to="/Game">Tic-Tac-Toe</Link>
-      </div>
-    </div>
-    <Router basename="/">
-      <Routes>
-        <Route path="/Todo" element={<Todo />} />
-        <Route path="/Portfolio" element={<PortFolio />} />
-        <Route path="/Game" element={<App />} />
-      </Routes>
-    </Router>
-  </>
+  <React.StrictMode>
+    <ThemeProvider>
+      <Router basename="/Portfolio">
+        <div style={{ borderRadius: '10px', height: '100px', width: '98%', margin: '0% 1%' }} className="navbar">
+          <img src={logo} alt="Mkr Logo" style={{ borderRadius: '10%', float: 'left', width: '5%' }} />
+          <div className="navbarRoutes" style={{ padding: '10px' }}>
+            <Link to="/">Home</Link>
+            <Link to="/Todo">TODO</Link>
+            <Link to="/Game">Tic-Tac-Toe</Link>
+          </div>
+        </div>
+        <Routes>
+          <Route path="/" element={<PortFolio />} />
+          <Route path="/Todo" element={<Todo />} />
+          <Route path="/Game" element={<App />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  </React.StrictMode>
 );

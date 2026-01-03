@@ -1,0 +1,218 @@
+{
+  "personalInfo": {
+    "name": "MANDADI KARTHIKEYAN REDDY",
+    "title": "Senior Software Engineer",
+    "startDate": {
+      "year": 2023,
+      "month": 4
+    },
+    "summary": "Results-driven Senior Software Engineer with {experience} years of experience in full-stack development, specializing in ASP.NET, React, and database migrations. Proven track record of delivering impactful features, increasing test coverage from 0% to 20%, and leading critical SQL to PostgreSQL and EDMX to CodeFirst migrations. Awarded Best Employee (Q3 2023) and Security Hackathon winner. Expert in TDD, Agile practices, and modern development workflows. Passionate about clean code, continuous improvement, and building scalable enterprise solutions.",
+    "typewriterWords": ["Asp.Net Developer", "Engineer", "Programmer"],
+    "socialLinks": [
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/mandadikarthikeyanreddy/",
+        "icon": "fa fa-linkedin"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/karthikeyan-reddy/react-app",
+        "icon": "fa fa-github-square"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/karthikeyanreddy.mandadi/",
+        "icon": "fa fa-instagram"
+      }
+    ],
+    "resume": {
+      "fileName": "Mkarthikeyanreddy_Resume.docx",
+      "displayText": "Download Resume"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "items": [
+      {
+        "position": "Senior Software Engineer, Navex India Pvt ltd",
+        "period": "August 2025 - Present",
+        "location": "Bangalore",
+        "responsibilities": [
+          "Worked on SQL to PostgreSQL Migration.",
+          "Worked on EDMX to CodeFirst Migration, inorder to make the application feasible for Dotnet core migration.",
+          "TDD Based Application Development."
+        ]
+      },
+      {
+        "position": "Member of Technical Staff, First American India",
+        "period": "April 2023 - July 31 2025",
+        "location": "Bangalore",
+        "responsibilities": [
+          "Developed and enhanced several critical features for web applications using ASP.NET (C#).",
+          "Documented comprehensive database documentation to support development and maintenance.",
+          "Delivered multiple kaizens, driving continuous improvement and efficiency in processes.",
+          "Expertise in NUnit unit testing, increasing test coverage from 0% to 20%.",
+          "Leveraged SQL, JavaScript, and jQuery to create efficient and responsive solutions.",
+          "Actively participated in Agile ceremonies, refining requirements, and adapting Jira methodology for project tracking.",
+          "Recognized with the Best Employee Award (Q3 2023) for exceptional performance and contributions."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "categories": [
+      {
+        "name": "Backend",
+        "items": [
+          { "name": "C#", "level": "Experienced" },
+          { "name": "ASP.NET MVC", "level": "Experienced" },
+          { "name": ".NET Framework", "level": "Experienced" },
+          { "name": "Web API", "level": "Experienced" },
+          { "name": "SQL Server", "level": "Experienced" },
+          { "name": "Golang", "level": "Learning basics" },
+          { "name": "REST API", "level": "Experienced" }
+        ]
+      },
+      {
+        "name": "Frontend",
+        "items": [
+          { "name": "JavaScript", "level": "Experienced" },
+          { "name": "jQuery", "level": "Experienced" },
+          { "name": "HTML", "level": "Experienced" },
+          { "name": "CSS", "level": "Experienced" },
+          { "name": "Bootstrap", "level": "Experienced" },
+          { "name": "React.js", "level": "Learning" }
+        ]
+      },
+      {
+        "name": "Databases",
+        "items": [
+          { "name": "SQL Server", "level": "Experienced" },
+          { "name": "PostgreSQL", "level": "Intermediate" },
+          { "name": "MangoDB", "level": "Beginner" }
+        ]
+      },
+      {
+        "name": "ORM",
+        "items": [
+          { "name": "Entity Framework", "level": "Experienced" }
+        ]
+      },
+      {
+        "name": "Testing & Optimization",
+        "items": [
+          { "name": "NUnit", "level": "Experienced" },
+          { "name": "Regression Testing", "level": "Experienced" },
+          { "name": "Performance Tuning", "level": "Experienced" }
+        ]
+      },
+      {
+        "name": "DevOps & Cloud",
+        "items": [
+          { "name": "Git", "level": "Experienced" },
+          { "name": "GitHub", "level": "Experienced" },
+          { "name": "AWS", "level": "Basic" },
+          { "name": "Firebase", "level": "Experienced" }
+        ]
+      },
+      {
+        "name": "Design & Architecture",
+        "items": [
+          { "name": "IOC", "level": "Experienced" },
+          { "name": "JWT Auth", "level": "Experienced" },
+          { "name": "Repository Pattern", "level": "Experienced" },
+          { "name": "Singleton", "level": "Experienced" },
+          { "name": "Secure Coding Practices", "level": "Experienced" }
+        ]
+      },
+      {
+        "name": "Tools & Methodologies",
+        "items": [
+          { "name": "Jira", "level": "Experienced" },
+          { "name": "Scrum", "level": "Experienced" },
+          { "name": "Agile", "level": "Experienced" },
+          { "name": "Visual Studio", "level": "Experienced" },
+          { "name": "Postman", "level": "Experienced" },
+          { "name": "BurpSuite", "level": "Experienced" }
+        ]
+      },
+      {
+        "name": "GenAI Tools",
+        "items": [
+          { "name": "GitHub Copilot", "level": "Experienced" },
+          { "name": "Cursor", "level": "Experienced" },
+          { "name": "ChatGPT", "level": "Experienced" }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "degree": "B.tech Electrical & Electronics Engineering",
+        "institution": "Presidency University",
+        "period": "2019-2023",
+        "description": "As an Electrical and Electronics Engineering (EEE) student with a 9.51 CGPA, I have built a strong academic and practical foundation. I have conducted research on CC-CV technology for Li-ion batteries to enhance charging efficiency and extend battery life. Additionally, I contributed to vehicle building as part of the Electrical Vehicle Club and secured 3rd place in the SAE: REEV competition organized by IEEE. My projects and research demonstrate my passion for sustainable energy solutions and advanced technologies in the electric vehicle sector."
+      },
+      {
+        "degree": "INTERMEDIATE",
+        "institution": "Narayana Junior College",
+        "period": "2017-2019",
+        "description": "During my intermediate studies in MPC (Mathematics, Physics, and Chemistry), I secured a CGPA of 9.71, which laid a strong foundation for my further academic and technical pursuits in the field of Electrical and Electronics Engineering"
+      },
+      {
+        "degree": "10th Standard",
+        "institution": "Sree Chaitanya High School",
+        "period": "2016-2017",
+        "description": "During my 10th Standard studies, I secured a CGPA of 9.7."
+      }
+    ]
+  },
+  "achievements": {
+    "title": "Achievements",
+    "items": [
+      {
+        "event": "Security Hackathon",
+        "organization": "First American(India)",
+        "description": "Won Security Hackathon Competition organized by First American. This Competition involves in finding security flaws in application as per OWASP and security good practices.",
+        "period": "Sep 2024",
+        "icon": "fa fa-star-o"
+      },
+      {
+        "event": "Q3: Best Employee Award",
+        "organization": "First American(India)",
+        "description": "Won Best Employee Award for work in First American Organization.",
+        "period": "Dec 2023",
+        "icon": "fa fa-certificate"
+      },
+      {
+        "event": "3rd Prize in SAE: REEV Competition",
+        "organization": "IEEE Bangalore Section",
+        "description": "Won 3rd Prize in Range Extended Electrical vehicle competition organized by IEEE SAE Bangalore division.",
+        "period": "2023-2024",
+        "icon": "fa fa-trophy"
+      },
+      {
+        "event": "Golden Medal: Academics",
+        "organization": "Presidency University",
+        "description": "Got Gold Medal for Academics.",
+        "period": "2019-2023",
+        "icon": "fa fa-trophy"
+      }
+    ]
+  },
+  "learnings": {
+    "title": "Learning's",
+    "items": [
+      {
+        "event": "AWS Cloud Computing 101",
+        "organization": "AWS Skill Builder",
+        "description": " ",
+        "period": "Jun 2024",
+        "icon": "fa fa-certificate"
+      }
+    ]
+  }
+}

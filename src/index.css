@@ -1,12 +1,21 @@
 body {
   margin: 0;
-  font-family: "Baloo 2", cursive;
+  font-family: "Baloo 2", cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
-  color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: hsl(0, 0%, 0%);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="dark"] {
+  background-color: #0a0e27;
+  color: #ffffff;
+}
+
+body[data-theme="light"] {
+  background-color: #f5f7fa;
+  color: #1a1f3a;
 }
 
 code {
@@ -139,6 +148,13 @@ img:hover {
 }
 .navbarRoutes a{
   padding: 0px 5px;
-  color:aliceblue;
-  text-decoration:none
+  color: var(--navbar-link-color, #ffffff);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.navbarRoutes a:hover {
+  color: var(--navbar-link-hover, var(--accent-color));
+  text-decoration: underline;
 }

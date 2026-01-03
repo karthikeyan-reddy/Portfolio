@@ -1,241 +1,304 @@
 import React from 'react';
-import './PortFolio.css'
-import picture from './assets/Photos/background_Free.png'
-import { useState,useEffect } from 'react';
-import 'font-awesome/css/font-awesome.min.css'
-import $ from 'jquery/dist/jquery.min.js'
-import resume from './assets/Resumes/Template.docx'
+import './PortFolio.css';
+import picture from './assets/Photos/background_Free.png';
+import { useState, useEffect } from 'react';
+import 'font-awesome/css/font-awesome.min.css';
+import resume from './assets/Resumes/Template.docx';
+import portfolioData from './data/portfolioData.json';
+import { useTheme } from './context/ThemeContext';
+import { calculateExperience } from './utils/experienceCalculator';
+
+// Typewriter component
+function Typewriter({ words, prefix = "" }) {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = words[currentWordIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (currentText.length < word.length) {
+          setCurrentText(word.substring(0, currentText.length + 1));
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        if (currentText.length > 0) {
+          setCurrentText(word.substring(0, currentText.length - 1));
+        } else {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, words]);
+
+  return (
+    <span className="typewriter-text">
+      {prefix}{currentText}
+      <span className="typewriter-cursor">|</span>
+    </span>
+  );
+}
+
+// Theme Toggle Button
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+      <i className={`fa fa-${theme === 'dark' ? 'sun' : 'moon'}`}></i>
+    </button>
+  );
+}
 
 function MainScreen() {
-    return (
-        <>
-            <section className="dark">
-                <div className="container py-3">
-                    <article className="postcard dark green">
-                        <a className="postcard__img_link" href="#">
-                            <img className="postcard__img" src={picture} alt="Image Title" />
-                        </a>
-                        <div className="postcard__text">
-                            <h1 className="postcard__title green"><a href="#">MANDADI KARTHIKEYAN REDDY</a></h1>
-                            <div className="postcard__subtitle small">
-                                Member Technical Staff
-                            </div>
-                            <div className="postcard__bar"></div>
-                            <div className="postcard__preview-txt">ASP.NET developer with 1.9 years of experience delivering impactful features and driving quality through NUnit testing, increasing coverage from 0% to 20%. Proficient in SQL, JavaScript, and jQuery, with hands-on experience in React and foundational skills in AWS and Golang. Awarded Best Employee (Q3 2023) for innovation and process improvements. Skilled in Agile practices, database documentation, and kaizen initiatives.</div>
-                            <ul className="postcard__tagbox">
-                                <li style={{ padding: '0px 5px' }}>
-                                    <button className='btn btn-info'>
-                                        <a href='https://www.linkedin.com/in/mandadikarthikeyanreddy/' target='blank' style={{ color: 'black', textDecoration: 'none' }}><i className="fa fa-linkedin mr-2"></i> LinkedIn</a>
-                                    </button>
-                                </li>
-                                <li style={{ padding: '0px 5px' }}>
-                                    <button className='btn btn-info'>
-                                        <a href='https://github.com/karthikeyan-reddy/react-app' target='blank' style={{ color: 'black', textDecoration: 'none' }}><i className="fa fa-github-square mr-2"></i> GitHub</a>
-                                    </button>
-                                </li>
-                                <li style={{ padding: '0px 5px' }}>
-                                    <button className='btn btn-info'>
-                                        <a href='https://www.instagram.com/karthikeyanreddy.mandadi/' target='blank' style={{ color: 'black', textDecoration: 'none' }}><i className="fa fa-instagram mr-2"></i> Instagram</a>
-                                    </button>
-                                </li>
-                                <li style={{ padding: '0px 5px' }}>
-                                    <a href={resume} target='blank' download="Mkarthikeyanreddy_Resume.docx"><button className='btn btn-warning'>Download Resume</button></a>
-                                </li>
-                            </ul>
-                        </div> 
-                    </article>
-                </div>
-            </section>
-        </>
-    )
-}
-function SubSections() {
-    const [content, setContent] = useState('');
-    useEffect(() => {
-        $('.Experience').click();
-      }, []);
+  const { theme } = useTheme();
+  const personalInfo = portfolioData.personalInfo;
+  
+  // Calculate experience dynamically
+  const experience = personalInfo.startDate 
+    ? calculateExperience(personalInfo.startDate.year, personalInfo.startDate.month)
+    : 2.8; // Fallback value
+  
+  // Replace {experience} placeholder in summary/description
+  const summary = (personalInfo.summary || personalInfo.description).replace('{experience}', experience.toFixed(1));
 
-    // Functions that return content
-    function Experience() {
-        return (
-            <div className="card shadow-lg dark" style={{ color: 'aliceblue' }}>
-                <h3 className="text-center" style={{fontWeight:'bold'}}>Member Technical Staff, First American India</h3>
-                <p className="text-center text-info">April 2023 - Present , Bangalore</p>
-                <h4 className='text-warning' style={{ textAlign: 'left', textDecoration: 'underline' }}>Key Responsibilities & Achievements:</h4>
-                <ul style={{ textAlign: 'left', padding: '0% 0% 0% 5%' }}>
-                    <li className='text-danger'>Developed and enhanced several critical features for web applications using ASP.NET (C#).</li>
-                    <li className='text-danger'>Documented comprehensive database documentation to support development and maintenance.</li>
-                    <li className='text-danger'>Delivered multiple kaizens, driving continuous improvement and efficiency in processes.</li>
-                    <li className='text-danger'>Expertise in NUnit unit testing, increasing test coverage from 0% to 20%.</li>
-                    <li className='text-danger'>Leveraged SQL, JavaScript, and jQuery to create efficient and responsive solutions.</li>
-                    <li className='text-danger'>Actively participated in Agile ceremonies, refining requirements, and adapting Jira methodology for project tracking.</li>
-                    <li className='text-danger'>Recognized with the Best Employee Award (Q3 2023) for exceptional performance and contributions.</li>
-                </ul>
+  return (
+    <>
+      <ThemeToggle />
+      <section className={`hero-section ${theme}`}>
+        <div className="container py-3">
+          <article className={`postcard ${theme} animated-fade-in`}>
+            <a className="postcard__img_link" href="#">
+              <img className="postcard__img" src={picture} alt="Profile" />
+            </a>
+            <div className="postcard__text">
+              <h1 className={`postcard__title ${theme}`}>
+                <a href="#">{personalInfo.name}</a>
+              </h1>
+              <div className={`postcard__subtitle ${theme}`}>
+                {personalInfo.title} - <Typewriter words={personalInfo.typewriterWords} />
+              </div>
+              <div className={`postcard__bar ${theme}`}></div>
+              <div className={`postcard__preview-txt ${theme}`}>
+                {summary}
+              </div>
+              <ul className="postcard__tagbox">
+                {personalInfo.socialLinks.map((link, index) => (
+                  <li key={index} style={{ padding: '0px 5px' }}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`social-link ${theme}`}
+                    >
+                      <i className={link.icon}></i> {link.name}
+                    </a>
+                  </li>
+                ))}
+                <li style={{ padding: '0px 5px' }}>
+                  <a
+                    href={resume}
+                    target="_blank"
+                    download={personalInfo.resume.fileName}
+                    className={`resume-link ${theme}`}
+                  >
+                    <i className="fa fa-download"></i> {personalInfo.resume.displayText}
+                  </a>
+                </li>
+              </ul>
             </div>
-        )
-    }
-    function ButtonFormat({ skill, percentage, skillLevel }) {
-        return (
-            <div className="container col-2 mt-5" style={{ display: 'inline-block' }}>
-                <div className="card shadow p-4 dark" style={{ color: 'aliceblue', width: 'max-content', minWidth: '100%' }}>
-                    <h4 className="text-center">{skill}</h4>
-                    <p className="text-center text-secondary">{skillLevel}</p>
-                    <div className="progress">
-                        <div
-                            className="progress-bar progress-bar bg-warning"
-                            role="progressbar"
-                            style={{ width: `${percentage}`, color: 'black', fontWeight: 'bold' }}
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                        >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-    function Skills() {
-        return (
-            <>
-                <ButtonFormat skill="C#" percentage="80%" skillLevel="Experienced" />
-                <ButtonFormat skill="ASP.Net" percentage="80%" skillLevel="Experienced" />
-                <ButtonFormat skill="React" percentage="50%" skillLevel="SkillFul" />
-                <ButtonFormat skill="SQL" percentage="70%" skillLevel="Experienced" />
-                <ButtonFormat skill="NUnit" percentage="40%" skillLevel="SkillFul" />
-                <ButtonFormat skill="Web Development" percentage="70%" skillLevel="Experienced" />
-                <ButtonFormat skill="HTML & CSS" percentage="70%" skillLevel="Experienced" />
-                <ButtonFormat skill="JavaScript" percentage="50%" skillLevel="SkillFul" />
-                <ButtonFormat skill="JQuery" percentage="50%" skillLevel="SkillFul" />
-                <ButtonFormat skill="GO" percentage="30%" skillLevel="Beginner" />
-                <ButtonFormat skill="AWS" percentage="30%" skillLevel="Beginner" />
-                <ButtonFormat skill="JIRA" percentage="60%" skillLevel="Experienced" />
-            </>
-        )
-    }
-    function Education() {
-        return (
-            <section className="py-5">
-                <ul className="timeline">
-                    <li className="timeline-item mb-5">
-                        <h5 className="fw-bold">B.tech Electrical & Electronics Engineering</h5>
-                        <p className="text-info mb-2 fw-bold">Presidency University</p>
-                        <p className="text-secondary mb-2 fw-bold">2019-2023</p>
-                        <p className="text-warning">
-                            As an Electrical and Electronics Engineering (EEE) student with a 9.51 CGPA, I have built a strong academic and practical foundation. I have conducted research on CC-CV technology for Li-ion batteries to enhance charging efficiency and extend battery life. Additionally, I contributed to vehicle building as part of the Electrical Vehicle Club and secured 3rd place in the SAE: REEV competition organized by IEEE. My projects and research demonstrate my passion for sustainable energy solutions and advanced technologies in the electric vehicle sector.
-                        </p>
-                    </li>
-                    <li className="timeline-item mb-5">
-                        <h5 className="fw-bold">INTERMEDIATE</h5>
-                        <p className="text-info mb-2 fw-bold">Narayana Junior College</p>
-                        <p className="text-secondary mb-2 fw-bold">2017-2019</p>
-                        <p className="text-warning">
-                            During my intermediate studies in MPC (Mathematics, Physics, and Chemistry), I secured a CGPA of 9.71, which laid a strong foundation for my further academic and technical pursuits in the field of Electrical and Electronics Engineering
-                        </p>
-                    </li>
-                    <li className="timeline-item mb-5">
-                        <h5 className="fw-bold">10th Standard</h5>
-                        <p className="text-info mb-2 fw-bold">Sree Chaitanya High School</p>
-                        <p className="text-secondary mb-2 fw-bold">2016-2017</p>
-                        <p className="text-warning">
-                            During my 10th Standard studies, I secured a CGPA of 9.7.
-                        </p>
-                    </li>
-                </ul>
-            </section>
-        )
-    }
-    function Cards({ event, companyName, Description, time, icon }) {
-        return (
-            <div className="card dark" style={{ width: '18rem', display: 'inline-block', verticalAlign: 'top', color: 'aliceblue', margin: '0px 5px' }}>
-                <div className="card-body">
-                    <h5 className="card-title"><i className={icon} aria-hidden="true"></i> {event}</h5>
-                    <h6 className="card-subtitle mb-2 text-info">{companyName}</h6>
-                    <h6 className="card-subtitle mb-2 text-info">{time}</h6>
-                    <p className="card-text text-warning">{Description}</p>
-                </div>
-            </div>
-        )
-    }
-    function Achievements() {
-        return (
-            <>
-                <Cards event="Security Hackathon" companyName="First American(India)" Description="Won Security Hackathon Competition organized by First American. This Competition involves in finding security flaws in application as per OWASP and security good practices." time="Sep 2024" icon="fa fa-star-o" />
-                <Cards event="Q3: Best Employee Award" companyName="First American(India)" Description="Won Best Employee Award for work in First American Organization." time="Dec 2023" icon="fa fa-certificate" />
-                <Cards event="3rd Prize in SAE: REEV Competition" companyName="IEEE Bangalore Section" Description="Won 3rd Prize in Range Extended Electrical vehicle competition organized by IEEE SAE Bangalore division." time="2023-2024" icon="fa fa-trophy" />
-                <Cards event="Golden Medal: Academics" companyName="Presidency University" Description="Got Gold Medal for Academics." time="2019-2023" icon="fa fa-trophy" />
-            </>
-        )
-    }
-    function Learning() {
-        return (
-            <>
-                <Cards event="AWS Cloud Computing 101" companyName="AWS Skill Builder" Description=" " time="Jun 2024" icon="fa fa-certificate" />
-            </>
-        )
-    }
-
-    // Handle hover or click events
-    const handleHover = (func) => {
-        setContent(func());
-    };
-
-    const handleClick = (func) => {
-        setContent(func());
-    };
-
-    return (
-        <div className="container mt-5 text-center">
-            {/* Buttons */}
-            <button
-                className="btn btn-primary m-2 Experience"
-                onMouseEnter={() => handleHover(Experience)}
-                onClick={() => handleClick(Experience)}
-            >
-                Experience
-            </button>
-            <button
-                className="btn btn-secondary m-2"
-                onMouseEnter={() => handleHover(Skills)}
-                onClick={() => handleClick(Skills)}
-            >
-                Skills
-            </button>
-            <button
-                className="btn btn-success m-2"
-                onMouseEnter={() => handleHover(Education)}
-                onClick={() => handleClick(Education)}
-            >
-                Education
-            </button>
-            <button
-                className="btn btn-danger m-2"
-                onMouseEnter={() => handleHover(Achievements)}
-                onClick={() => handleClick(Achievements)}
-            >
-                Achievements
-            </button>
-            <button
-                className="btn btn-warning m-2"
-                onMouseEnter={() => handleHover(Learning)}
-                onClick={() => handleClick(Learning)}
-            >
-                Learning's
-            </button>
-
-            <div className="mt-3">
-                {content}
-            </div>
+          </article>
         </div>
-    )
+      </section>
+    </>
+  );
+}
+
+function SubSections() {
+  const { theme } = useTheme();
+  const [content, setContent] = useState('');
+  const [activeTab, setActiveTab] = useState('experience');
+
+  useEffect(() => {
+    // Load experience by default
+    setContent(renderExperience());
+  }, [theme]);
+
+  function renderExperience() {
+    const experiences = portfolioData.experience.items;
+    return (
+      <section className={`experience-timeline-section ${theme}`}>
+        <ul className={`experience-timeline ${theme}`}>
+          {experiences.map((exp, index) => (
+            <li key={index} className={`experience-timeline-item ${theme} animated-slide-right`}>
+              <div className={`experience-card ${theme}`}>
+                <h3 className={`experience-position ${theme}`}>{exp.position}</h3>
+                <p className={`experience-period ${theme}`}>
+                  <i className="fa fa-calendar"></i> {exp.period}
+                </p>
+                <p className={`experience-location ${theme}`}>
+                  <i className="fa fa-map-marker"></i> {exp.location}
+                </p>
+                <h4 className={`experience-heading ${theme}`}>Key Responsibilities & Achievements:</h4>
+                <ul className={`experience-responsibilities ${theme}`}>
+                  {exp.responsibilities.map((item, itemIndex) => (
+                    <li key={itemIndex} className={`experience-list-item ${theme}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
+  function ButtonFormat({ skill, skillLevel }) {
+    return (
+      <div className="skill-card-wrapper">
+        <div className={`skill-card ${theme} animated-scale`}>
+          <h4 className={`skill-name ${theme}`}>{skill}</h4>
+          <p className={`skill-level ${theme}`}>{skillLevel}</p>
+        </div>
+      </div>
+    );
+  }
+
+  function renderSkills() {
+    const skillCategories = portfolioData.skills.categories || [];
+    return (
+      <div className={`skills-categories-container ${theme} animated-fade-in`}>
+        {skillCategories.map((category, categoryIndex) => (
+          <div key={categoryIndex} className={`skill-category ${theme}`}>
+            <h3 className={`category-title ${theme}`}>
+              <i className="fa fa-folder"></i> {category.name}
+            </h3>
+            <div className={`skills-grid ${theme}`}>
+              {category.items.map((skill, skillIndex) => (
+                <ButtonFormat
+                  key={skillIndex}
+                  skill={skill.name}
+                  skillLevel={skill.level}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function renderEducation() {
+    return (
+      <section className={`education-section ${theme}`}>
+        <ul className={`timeline ${theme}`}>
+          {portfolioData.education.items.map((edu, index) => (
+            <li key={index} className={`timeline-item ${theme} animated-slide-right`}>
+              <h5 className={`timeline-degree ${theme}`}>{edu.degree}</h5>
+              <p className={`timeline-institution ${theme}`}>{edu.institution}</p>
+              <p className={`timeline-period ${theme}`}>{edu.period}</p>
+              <p className={`timeline-description ${theme}`}>{edu.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
+  function AchievementCard({ event, organization, description, period, icon }) {
+    return (
+      <div className={`achievement-card ${theme} animated-scale`}>
+        <div className="card-body">
+          <h5 className={`card-title ${theme}`}>
+            <i className={icon}></i> {event}
+          </h5>
+          <h6 className={`card-organization ${theme}`}>{organization}</h6>
+          <h6 className={`card-period ${theme}`}>{period}</h6>
+          <p className={`card-description ${theme}`}>{description}</p>
+        </div>
+      </div>
+    );
+  }
+
+  function renderAchievements() {
+    return (
+      <div className={`achievements-grid ${theme} animated-fade-in`}>
+        {portfolioData.achievements.items.map((achievement, index) => (
+          <AchievementCard
+            key={index}
+            event={achievement.event}
+            organization={achievement.organization}
+            description={achievement.description}
+            period={achievement.period}
+            icon={achievement.icon}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  function renderLearnings() {
+    return (
+      <div className={`achievements-grid ${theme} animated-fade-in`}>
+        {portfolioData.learnings.items.map((learning, index) => (
+          <AchievementCard
+            key={index}
+            event={learning.event}
+            organization={learning.organization}
+            description={learning.description}
+            period={learning.period}
+            icon={learning.icon}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  const handleClick = (tabName, renderFunction) => {
+    setActiveTab(tabName);
+    setContent(renderFunction());
+  };
+
+  const tabs = [
+    { name: 'experience', label: portfolioData.experience.title, render: renderExperience },
+    { name: 'skills', label: portfolioData.skills.title, render: renderSkills },
+    { name: 'education', label: portfolioData.education.title, render: renderEducation },
+    { name: 'achievements', label: portfolioData.achievements.title, render: renderAchievements },
+    { name: 'learnings', label: portfolioData.learnings.title, render: renderLearnings },
+  ];
+
+  return (
+    <div className={`subsections-container ${theme}`}>
+      <div className={`tabs-container ${theme}`}>
+        {tabs.map((tab) => (
+          <button
+            key={tab.name}
+            className={`tab-button ${theme} ${activeTab === tab.name ? 'active' : ''}`}
+            onClick={() => handleClick(tab.name, tab.render)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <div className={`content-container ${theme} animated-fade-in`}>
+        {content}
+      </div>
+    </div>
+  );
 }
 
 function PortFolio() {
-    return (
-        <>
-            {<MainScreen />}
-            {<SubSections />}
-        </>
-    );
+  return (
+    <>
+      <MainScreen />
+      <SubSections />
+    </>
+  );
 }
 
-export default PortFolio
+export default PortFolio;
